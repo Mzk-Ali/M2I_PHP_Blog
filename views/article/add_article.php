@@ -1,0 +1,30 @@
+<?php
+    /* Affichage des erreurs */
+    if (count($arrErrors) > 0){
+        echo "<div class='alert alert-danger'>";
+        foreach ($arrErrors as $strError){
+            echo "<p class='mb-0'>".$strError."</p>";
+        }
+        echo "</div>";
+    }
+?>
+
+<form method="post" enctype="multipart/form-data">
+    <p>
+        <label for="title">Titre</label>
+        <input name="title" value="<?php echo $newArticle->getTitle(); ?>" id="title" class="form-control 
+            <?php if(isset($arrErrors['title'])){ echo 'is-invalid'; } ?>" type="text" >
+    </p>
+    <p>
+        <label>Image</label>
+        <input name="img" class="form-control <?php if(isset($arrErrors['img'])){ echo 'is-invalid'; } ?>" type="file">
+    </p>
+    <p>
+        <label>Contenu</label>
+        <textarea name="content" 
+        class="form-control <?php if(isset($arrErrors['content'])){ echo 'is-invalid'; } ?>"><?php echo $newArticle->getContent(); ?></textarea>
+    </p>    
+    <p>
+        <input class="form-control btn btn-primary" type="submit" >
+    </p>
+</form>
